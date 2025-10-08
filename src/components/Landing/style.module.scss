@@ -1,0 +1,238 @@
+.landing{
+    position: relative;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    background: #C7F9CC;
+
+    img{
+      object-fit: cover;
+    }
+
+    .contentWrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 5%;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 120px 5% 20px;
+        overflow-y: auto;
+      }
+
+      @media (max-width: 480px) {
+        padding: 100px 5% 20px;
+      }
+    }
+
+    .globeContainer {
+      position: relative;
+      width: 40%;
+      height: 60%;
+      min-height: 400px;
+      
+      @media (max-width: 1024px) {
+        width: 40%;
+        height: 60%;
+      }
+
+      @media (max-width: 768px) {
+        position: relative;
+        width: 90%;
+        height: 350px;
+        min-height: 300px;
+        right: auto;
+        top: auto;
+        transform: none;
+        opacity: 1;
+        pointer-events: all;
+        margin: 30px 0;
+        order: 2;
+      }
+
+      @media (max-width: 480px) {
+        width: 100%;
+        height: 280px;
+        min-height: 250px;
+        margin: 20px 0;
+      }
+    }
+    
+    .sliderContainer{
+      position: absolute;
+      bottom: 50px;
+      left: 0;
+      width: 100%;
+      z-index: 1;
+
+      @media (max-width: 768px) {
+        position: relative;
+        bottom: auto;
+        order: 3;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+    }
+    
+    .slider{
+      position: relative;
+      white-space: nowrap;
+      display: flex;
+    }
+    
+    .slider p{
+      position: relative;
+      margin: 0px;
+      color: #38A3A5;
+      font-size: 100px;
+      font-weight: 500;
+      padding-right: 50px;
+      flex-shrink: 0;
+
+      @media (max-width: 1024px) {
+        font-size: 70px;
+        padding-right: 40px;
+      }
+
+      @media (max-width: 768px) {
+        font-size: 50px;
+        padding-right: 30px;
+      }
+
+      @media (max-width: 480px) {
+        font-size: 35px;
+        padding-right: 20px;
+      }
+    }
+  
+    .description{
+      position: relative;
+      width: 50%;
+      color: #38A3A5;
+      font-size: 24px;
+      font-weight: 300;
+      z-index: 2;
+
+      @media (max-width: 1024px) {
+        width: 55%;
+        font-size: 20px;
+      }
+
+      @media (max-width: 768px) {
+        width: 100%;
+        padding-right: 0;
+        order: 1;
+      }
+
+      h1{
+        font-size: 4rem;
+        margin: 20px 0;
+
+        @media (max-width: 1024px) {
+          font-size: 3rem;
+        }
+
+        @media (max-width: 768px) {
+          font-size: 2.5rem;
+          margin: 15px 0;
+        }
+
+        @media (max-width: 480px) {
+          font-size: 2rem;
+          margin: 10px 0;
+        }
+      }
+
+      h2{
+        font-size: 2rem;
+        margin: 10px 0;
+
+        @media (max-width: 1024px) {
+          font-size: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+          font-size: 1.3rem;
+          margin: 8px 0;
+        }
+
+        @media (max-width: 480px) {
+          margin: 5px 0;
+        }
+      }
+
+      h3{
+        @media (max-width: 768px) {
+          font-size: 1rem;
+          margin: 10px 0;
+        }
+      }
+
+      ul {
+        @media (max-width: 768px) {
+          font-size: 0.9rem;
+          margin: 15px 0;
+        }
+      }
+    }
+
+    .btnDiv{
+      padding: 2% 0;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+
+      @media (max-width: 768px) {
+        padding: 15px 0;
+      }
+
+      @media (max-width: 480px) {
+        gap: 10px;
+        padding: 10px 0;
+      }
+    }
+
+    .button{
+      background-color: #38A3A5;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 480px) {
+        border-radius: 8px;
+      }
+    }
+
+    .button a {
+      text-decoration: none;
+      color: white;
+      font-size: 1.8rem;
+      padding: 10px 20px;
+      display: inline-block;
+
+      @media (max-width: 1024px) {
+        font-size: 1.5rem;
+        padding: 8px 16px;
+      }
+
+      @media (max-width: 768px) {
+        font-size: 1.2rem;
+        padding: 6px 12px;
+      }
+
+      @media (max-width: 480px) {
+        font-size: 1rem;
+        padding: 5px 10px;
+      }
+    }
+}
