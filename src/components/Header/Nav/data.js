@@ -1,31 +1,28 @@
 export const links = [
     {
         title: "About Us",
-        href: "/"
+        href: "/aboutus"
     },
     {
         title: "Corporate",
-        href: "/"
+        href: "/corporate"
     },
     {
         title: "Events & Weddings",
-        href: "/"
+        href: "/events"
     },
     {
         title: "Transportation",
-        href: "/"
+        href: "/transportations"
     },
-    {
-        title: "Partners",
-        href: "/"
-    },
+    
     {
         title: "Blog",
         href: "/"
     },
     {
         title: "Contact",
-        href: "/"
+        href: "/contact"
     },
     
 ]

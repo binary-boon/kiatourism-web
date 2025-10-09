@@ -1,0 +1,423 @@
+// AboutUs.module.scss
+
+// Variables
+$color-primary: #d97706;
+$color-primary-dark: #b45309;
+$color-accent: #f43f5e;
+$color-gray-900: #111827;
+$color-gray-700: #374151;
+$color-gray-600: #4b5563;
+$color-white: #ffffff;
+
+$color-bg-amber-50: #fffbeb;
+$color-bg-rose-50: #fff1f2;
+$color-bg-amber-100: #fef3c7;
+$color-bg-rose-100: #ffe4e6;
+
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 1.5rem;
+$spacing-lg: 2rem;
+$spacing-xl: 3rem;
+$spacing-2xl: 4rem;
+$spacing-3xl: 5rem;
+
+$border-radius-lg: 1rem;
+$border-radius-xl: 1.5rem;
+$border-radius-2xl: 2rem;
+$border-radius-full: 9999px;
+
+$transition-base: all 0.3s ease;
+
+// Container
+.container {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, $color-bg-amber-50, $color-white, $color-bg-rose-50);
+}
+
+// Hero Section
+.hero {
+  padding: $spacing-3xl $spacing-sm;
+  
+  @media (min-width: 640px) {
+    padding: $spacing-3xl $spacing-md;
+  }
+  
+  @media (min-width: 1024px) {
+    padding: $spacing-3xl $spacing-lg;
+  }
+}
+
+.heroContent {
+  max-width: 72rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.heroTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  color: $color-gray-900;
+  margin-bottom: $spacing-md;
+  line-height: 1.1;
+  
+  @media (min-width: 640px) {
+    font-size: 3.75rem;
+  }
+  
+  @media (min-width: 1024px) {
+    font-size: 4.5rem;
+  }
+}
+
+.ampersand {
+  color: $color-primary;
+}
+
+.heroSubtitle {
+  font-size: 1.25rem;
+  color: $color-gray-600;
+  max-width: 48rem;
+  margin: 0 auto;
+  line-height: 1.75;
+  
+  @media (min-width: 640px) {
+    font-size: 1.5rem;
+  }
+}
+
+// Story Section
+.storySection {
+  padding: $spacing-2xl $spacing-sm;
+  
+  @media (min-width: 640px) {
+    padding: $spacing-2xl $spacing-md;
+  }
+  
+  @media (min-width: 1024px) {
+    padding: $spacing-2xl $spacing-lg;
+  }
+}
+
+.storyContainer {
+  max-width: 56rem;
+  margin: 0 auto;
+}
+
+.storyCard {
+  background: $color-white;
+  border-radius: $border-radius-2xl;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: $spacing-lg;
+  border: 1px solid rgba(229, 231, 235, 1);
+  
+  @media (min-width: 640px) {
+    padding: $spacing-xl;
+  }
+}
+
+.sectionTitle {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: $color-gray-900;
+  margin-bottom: $spacing-md;
+  
+  @media (min-width: 640px) {
+    font-size: 2.25rem;
+  }
+}
+
+.storyContent {
+  color: $color-gray-700;
+  font-size: 1.125rem;
+  line-height: 1.75;
+  
+  p {
+    margin-bottom: $spacing-sm;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Services Section
+.servicesSection {
+  padding: $spacing-2xl $spacing-sm;
+  background: linear-gradient(to bottom right, $color-bg-rose-50, $color-bg-amber-50);
+  
+  @media (min-width: 640px) {
+    padding: $spacing-2xl $spacing-md;
+  }
+  
+  @media (min-width: 1024px) {
+    padding: $spacing-2xl $spacing-lg;
+  }
+}
+
+.servicesContainer {
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: $spacing-xl;
+}
+
+.sectionSubtitle {
+  font-size: 1.125rem;
+  color: $color-gray-600;
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-md;
+  
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (min-width: 1024px) {
+    gap: $spacing-lg;
+  }
+}
+
+.serviceCard {
+  background: $color-white;
+  border-radius: $border-radius-xl;
+  padding: $spacing-lg;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(229, 231, 235, 1);
+  transition: $transition-base;
+  
+  &:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transform: translateY(-0.25rem);
+  }
+}
+
+.serviceIconWrapper {
+  color: $color-primary;
+  margin-bottom: $spacing-sm;
+}
+
+.serviceIcon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.serviceTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: $color-gray-900;
+  margin-bottom: $spacing-xs;
+}
+
+.serviceDescription {
+  color: $color-gray-600;
+  line-height: 1.75;
+}
+
+// Values Section
+.valuesSection {
+  padding: $spacing-2xl $spacing-sm;
+  
+  @media (min-width: 640px) {
+    padding: $spacing-2xl $spacing-md;
+  }
+  
+  @media (min-width: 1024px) {
+    padding: $spacing-2xl $spacing-lg;
+  }
+}
+
+.valuesContainer {
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.valuesGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-md;
+  
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.valueCard {
+  background: linear-gradient(to bottom right, $color-white, $color-bg-amber-50);
+  border-radius: $border-radius-xl;
+  padding: $spacing-lg;
+  text-align: center;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  transition: border-color 0.3s ease;
+  
+  &:hover {
+    border-color: rgba(251, 191, 36, 0.5);
+  }
+}
+
+.valueIconWrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  background: $color-bg-amber-100;
+  border-radius: $border-radius-full;
+  color: $color-primary;
+  margin-bottom: $spacing-sm;
+}
+
+.valueIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.valueTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: $color-gray-900;
+  margin-bottom: $spacing-xs;
+}
+
+.valueDescription {
+  color: $color-gray-600;
+}
+
+// Stats Section
+.statsSection {
+  padding: $spacing-2xl $spacing-sm;
+  background: linear-gradient(to right, $color-bg-amber-100, $color-bg-rose-100);
+  
+  @media (min-width: 640px) {
+    padding: $spacing-2xl $spacing-md;
+  }
+  
+  @media (min-width: 1024px) {
+    padding: $spacing-2xl $spacing-lg;
+  }
+}
+
+.statsContainer {
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-lg;
+  
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.statItem {
+  text-align: center;
+}
+
+.statNumber {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: $color-gray-900;
+  margin-bottom: $spacing-xs;
+  
+  @media (min-width: 640px) {
+    font-size: 3rem;
+  }
+}
+
+.statLabel {
+  color: $color-gray-600;
+  font-weight: 500;
+}
+
+// CTA Section
+.ctaSection {
+  padding: $spacing-3xl $spacing-sm;
+  
+  @media (min-width: 640px) {
+    padding: $spacing-3xl $spacing-md;
+  }
+  
+  @media (min-width: 1024px) {
+    padding: $spacing-3xl $spacing-lg;
+  }
+}
+
+.ctaContainer {
+  max-width: 56rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.ctaTitle {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: $color-gray-900;
+  margin-bottom: $spacing-md;
+  
+  @media (min-width: 640px) {
+    font-size: 2.25rem;
+  }
+}
+
+.ctaSubtitle {
+  font-size: 1.25rem;
+  color: $color-gray-600;
+  margin-bottom: $spacing-lg;
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ctaButtons {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  justify-content: center;
+  
+  @media (min-width: 640px) {
+    flex-direction: row;
+  }
+}
+
+.ctaPrimary,
+.ctaSecondary {
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $border-radius-full;
+  font-weight: 600;
+  transition: $transition-base;
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+}
+
+.ctaPrimary {
+  background: $color-primary;
+  color: $color-white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  
+  &:hover {
+    background: $color-primary-dark;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.ctaSecondary {
+  background: $color-white;
+  color: $color-gray-900;
+  border: 2px solid rgba(229, 231, 235, 1);
+  
+  &:hover {
+    background: rgba(249, 250, 251, 1);
+  }
+}

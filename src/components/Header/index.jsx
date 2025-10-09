@@ -5,7 +5,7 @@ import Button from './Button';
 import styles from './style.module.scss';
 import Nav from './Nav';
 
-export default function Index() {
+export default function Header() {
     const [isActive, setIsActive] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
 
@@ -67,7 +67,7 @@ export default function Index() {
                 initial="closed"
             >
                 <AnimatePresence>
-                    {isActive && <Nav />}
+                    {isActive && <Nav setIsActive={setIsActive} />}
                 </AnimatePresence>
             </motion.div>
             <Button isActive={isActive} toggleMenu={() => {setIsActive(!isActive)}}/>

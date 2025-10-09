@@ -1,9 +1,14 @@
 import styles from './style.module.scss';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { links, footerLinks } from './data';
 import { perspective, slideIn } from "./anim";
 
-export default function index() {
+export default function Nav({ setIsActive }) {
+  const handleLinkClick = () => {
+    setIsActive(false);
+  };
+
   return (
     <div className={styles.nav}>
        <div className={styles.body}>
@@ -13,16 +18,19 @@ export default function index() {
                 return (
                     <div key={`b_${i}`} className={styles.linkContainer}>
                         <motion.div
-                          href={href}
                           custom={i}
                           variants={perspective}
                           initial="initial"
                           animate="enter"
                           exit="exit"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          onClick={handleLinkClick}
+                          style={{ cursor: 'pointer' }}
                         >
-                            <a>
+                            <Link href={href}>
                                 {title}
-                            </a>
+                            </Link>
                         </motion.div>
                     </div>
                 )
@@ -35,12 +43,15 @@ export default function index() {
                     const { title, href } = link;
                     return (
                         <motion.a 
+                            href={href}
                             variants={slideIn}
                             custom={i} 
                             initial="initial"
                             animate="enter"
                             exit="exit"
                             key={`f_${i}`}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
                         >
                             {title}
                         </motion.a>
