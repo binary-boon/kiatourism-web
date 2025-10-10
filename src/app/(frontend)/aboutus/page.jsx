@@ -1,7 +1,7 @@
 // AboutUs.tsx
 import React from 'react';
 import { Users, Heart, MapPin, Calendar, Car, Sparkles } from 'lucide-react';
-import styles from './aboutus.module.scss';
+import styles from "./aboutus.module.scss";
 
 export default function AboutUs() {
   const services = [
