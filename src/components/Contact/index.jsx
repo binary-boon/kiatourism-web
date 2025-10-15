@@ -52,7 +52,7 @@ export default function index() {
                             
                         </Rounded>
                         <Rounded>
-                            <p>+31 6 27 84 74 30</p>
+                            <p>+91 741 3030 444</p>
                         </Rounded>
                 </div>
                 <div className={styles.info}>

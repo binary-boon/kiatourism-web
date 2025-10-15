@@ -65,8 +65,8 @@ export default function Contact() {
                   <div>
                     <h3 className="font-semibold text-gray-900 mb-2">Call Us</h3>
                     <p className="text-gray-600 text-sm mb-2">Mon-Sat: 9:00 AM - 6:00 PM</p>
-                    <a href="tel:+911234567890" className="text-blue-600 hover:text-blue-700 font-medium">
-                      +91 123 456 7890
+                    <a href="tel:+917413030444" className="text-blue-600 hover:text-blue-700 font-medium">
+                      +91 741 3030 444
                     </a>
                   </div>
                 </div>
@@ -84,7 +84,7 @@ export default function Contact() {
                     <h3 className="font-semibold text-gray-900 mb-2">Visit Us</h3>
                     <p className="text-gray-600 text-sm leading-relaxed">
                       Kia Tourism and Hotels<br />
-                      Jaipur, Rajasthan<br />
+                      Udaipur, Rajasthan<br />
                       India
                     </p>
                   </div>

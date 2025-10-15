@@ -9,6 +9,7 @@ import { InitTheme } from '@/providers/Theme/InitTheme'
 import { draftMode } from 'next/headers'
 import { getServerSideURL } from '@/utilities/getURL'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
+import { ClientWhatsAppWidget } from '@/components/WhatsAppWidget/ClientWidget'
 
 // Import your old Header component
 import Header from '@/components/Header'
@@ -36,7 +37,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           {/* Your old Header instead of Payload's */}
           <Header />
           {children}
-          {/* Removed Footer for now - add back if needed */}
+          <ClientWhatsAppWidget />
         </Providers>
       </body>
     </html>
