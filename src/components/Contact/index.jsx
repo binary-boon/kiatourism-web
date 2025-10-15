@@ -69,16 +69,12 @@ export default function index() {
                     <div>
                         <span>
                             <h3>socials</h3>
-                            <Magnetic>
-                                <p>Awwwards</p>
-                            </Magnetic>
+                            
                         </span>
                         <Magnetic>
                             <p>Instagram</p>
                         </Magnetic>
-                        <Magnetic>
-                            <p>Dribbble</p>
-                        </Magnetic>
+                        
                         <Magnetic>
                             <p>Linkedin</p>
                         </Magnetic>

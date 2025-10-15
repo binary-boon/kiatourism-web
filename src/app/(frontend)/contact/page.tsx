@@ -84,7 +84,7 @@ export default function Contact() {
                     <h3 className="font-semibold text-gray-900 mb-2">Visit Us</h3>
                     <p className="text-gray-600 text-sm leading-relaxed">
                       Kia Tourism and Hotels<br />
-                      Udaipur, Rajasthan<br />
+                      218, 2nd Floor, City Center Mall, Udaipur, Rajasthan<br />
                       India
                     </p>
                   </div>
