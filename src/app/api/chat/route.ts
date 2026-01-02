@@ -1,9 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { GoogleGenerativeAI } from '@google/generative-ai'
+import OpenAI from 'openai'
 import { Resend } from 'resend'
 
-// Initialize Gemini AI
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '')
+// Initialize Groq (uses OpenAI SDK)
+const groq = new OpenAI({
+  baseURL: 'https://api.groq.com/openai/v1',
+  apiKey: process.env.GROQ_API_KEY || '',
+})
+
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 // System prompt for the AI assistant
@@ -89,19 +93,19 @@ When a visitor shows genuine interest (mentions specific dates, destinations, or
 Say something like: "I'd love to help you further! Could you share your name and email so I can send you detailed information and our team can create a personalized package for you?"
 
 IMPORTANT BOUNDARIES - NEVER PROVIDE:
-❌ Specific prices or package costs
-❌ Exact availability for dates
-❌ Confirmed bookings or reservations
-❌ Detailed quotations
+- Specific prices or package costs
+- Exact availability for dates
+- Confirmed bookings or reservations
+- Detailed quotations
 
 INSTEAD, when asked about pricing, availability, or specific bookings:
-✅ Say: "Great question! Pricing varies based on your specific requirements, travel dates, and group size. Let me connect you with our team who can provide accurate pricing and availability."
-✅ Then offer two options:
+- Say: "Great question! Pricing varies based on your specific requirements, travel dates, and group size. Let me connect you with our team who can provide accurate pricing and availability."
+- Then offer two options:
    1. "I can have our team email you a detailed quote - just share your email address"
    2. "You can directly chat with our team on WhatsApp for immediate assistance"
 
 CONVERSATION STYLE:
-- Use emojis occasionally (✈️, 🌍, 💍, 🚗, ✨) but don't overdo it
+- Use emojis occasionally but don't overdo it
 - Keep responses concise but informative (2-4 sentences usually)
 - Ask one question at a time
 - Show enthusiasm about helping plan their journey
@@ -164,9 +168,9 @@ async function sendLeadNotification(leadData: {
       .join('\n\n')
 
     await resend.emails.send({
-      from: 'Kia Tourism Chatbot <admin@kiatourism.com>', // Change this to your verified domain
+      from: 'Kia Tourism Chatbot <onboarding@resend.dev>',
       to: 'admin@kiatourism.com',
-      subject: `🎯 New Lead from Chatbot: ${leadData.name || 'Anonymous'}`,
+      subject: `New Lead from Chatbot: ${leadData.name || 'Anonymous'}`,
       html: `
         <!DOCTYPE html>
         <html>
@@ -188,7 +192,7 @@ async function sendLeadNotification(leadData: {
         <body>
           <div class="container">
             <div class="header">
-              <h2 style="margin: 0;">🎯 New Lead Captured!</h2>
+              <h2 style="margin: 0;">New Lead Captured!</h2>
               <p style="margin: 5px 0 0 0; opacity: 0.9;">From Kia Tourism AI Chatbot</p>
             </div>
             
@@ -211,7 +215,7 @@ async function sendLeadNotification(leadData: {
                 <h3 style="margin-top: 0; color: #f97316;">Full Conversation</h3>
                 ${leadData.conversationHistory.map(msg => `
                   <div class="message ${msg.role === 'user' ? 'user-message' : 'ai-message'}">
-                    <strong>${msg.role === 'user' ? '👤 Customer' : '🤖 AI Assistant'}:</strong>
+                    <strong>${msg.role === 'user' ? 'Customer' : 'AI Assistant'}:</strong>
                     <p style="margin: 5px 0 0 0;">${msg.content}</p>
                   </div>
                 `).join('')}
@@ -220,7 +224,7 @@ async function sendLeadNotification(leadData: {
               <div style="text-align: center; margin-top: 20px;">
                 ${leadData.phone ? `
                   <a href="https://wa.me/${leadData.phone.replace(/\D/g, '')}" class="whatsapp-btn">
-                    💬 Contact via WhatsApp
+                    Contact via WhatsApp
                   </a>
                 ` : ''}
               </div>
@@ -228,7 +232,7 @@ async function sendLeadNotification(leadData: {
 
             <div class="footer">
               <p>This lead was automatically captured by Kia Tourism AI Chatbot</p>
-              <p>Respond promptly to convert this lead! ⚡</p>
+              <p>Respond promptly to convert this lead!</p>
             </div>
           </div>
         </body>
@@ -269,46 +273,48 @@ export async function POST(req: NextRequest) {
 
     // Check if this is an escalation scenario
     const shouldEscalate = shouldEscalateToHuman(message)
-    
-    // Build conversation context for AI
-    const conversationContext = conversationHistory
-      .map((msg: any) => `${msg.role}: ${msg.content}`)
-      .join('\n')
 
-    // Initialize Gemini model
-    const model = genAI.getGenerativeModel({ 
-      model: "gemini-2.0-flash-exp",
-      generationConfig: {
-        temperature: 0.7,
-        topP: 0.95,
-        topK: 40,
-        maxOutputTokens: 500,
-      },
+    // Prepare messages for Groq
+    const messages: any[] = [
+      { role: 'system', content: SYSTEM_PROMPT }
+    ]
+
+    // Add conversation history
+    conversationHistory.forEach((msg: any) => {
+      messages.push({
+        role: msg.role === 'assistant' ? 'assistant' : 'user',
+        content: msg.content
+      })
     })
 
-    // Prepare the full prompt
-    const fullPrompt = `${SYSTEM_PROMPT}
+    // Add current user message
+    messages.push({
+      role: 'user',
+      content: message
+    })
 
-CONVERSATION HISTORY:
-${conversationContext}
-
-CURRENT USER MESSAGE:
-${message}
-
-${shouldEscalate ? `
-IMPORTANT: The user is asking about pricing, availability, or wants to book. You MUST:
+    // Add escalation instruction if needed
+    if (shouldEscalate) {
+      messages.push({
+        role: 'system',
+        content: `IMPORTANT: The user is asking about pricing, availability, or wants to book. You MUST:
 1. Acknowledge their interest
 2. Explain that you'll connect them with the team for accurate information
 3. Offer email and WhatsApp options
-4. If they haven't shared contact info, ask for their email to send details
-` : ''}
+4. If they haven't shared contact info, ask for their email to send details`
+      })
+    }
 
-Respond naturally and helpfully:`
+    // Get AI response from Groq
+    const completion = await groq.chat.completions.create({
+      model: 'llama-3.3-70b-versatile', // Fast, smart, and free!
+      messages: messages,
+      temperature: 0.7,
+      max_tokens: 500,
+      top_p: 0.95,
+    })
 
-    // Get AI response
-    const result = await model.generateContent(fullPrompt)
-    const response = result.response
-    const aiMessage = response.text()
+    const aiMessage = completion.choices[0]?.message?.content || 'I apologize, I had trouble generating a response. Please try again.'
 
     // Determine if we should capture this as a lead
     let leadCaptured = false
@@ -331,13 +337,13 @@ Respond naturally and helpfully:`
     let finalMessage = aiMessage
     
     if (shouldEscalate) {
-      const whatsappNumber = '919057570079' // Replace with actual WhatsApp number
+      const whatsappNumber = '919057570079'
       const encodedMessage = encodeURIComponent(
         `Hi, I was chatting with your AI assistant and I'm interested in learning more about your services.`
       )
       const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`
       
-      finalMessage += `\n\n💬 [Chat with our team on WhatsApp](${whatsappLink})`
+      finalMessage += `\n\nChat with our team on WhatsApp: ${whatsappLink}`
     }
 
     return NextResponse.json({

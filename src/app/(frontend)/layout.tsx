@@ -9,6 +9,7 @@ import { InitTheme } from '@/providers/Theme/InitTheme'
 import { draftMode } from 'next/headers'
 import { getServerSideURL } from '@/utilities/getURL'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
+
 import { ChatWidget } from '@/components/ChatWidget/ChatWidget'
 
 // Import your old Header component
@@ -38,6 +39,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <Header />
           {children}
           <ChatWidget/>
+        
         </Providers>
       </body>
     </html>

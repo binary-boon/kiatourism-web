@@ -251,38 +251,38 @@ export function ChatWidget() {
 
         {/* Input */}
         <div className="p-4 bg-white border-t border-gray-200 rounded-b-2xl">
-          <form onSubmit={handleSubmit} className="flex gap-2">
-            <textarea
-              ref={inputRef}
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder="Type your message..."
-              className="flex-1 resize-none rounded-xl border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent max-h-32"
-              rows={1}
-              style={{
-                minHeight: '40px',
-                maxHeight: '128px',
-              }}
-              onInput={(e) => {
-                const target = e.target as HTMLTextAreaElement
-                target.style.height = 'auto'
-                target.style.height = Math.min(target.scrollHeight, 128) + 'px'
-              }}
-            />
-            <button
-              type="submit"
-              disabled={!input.trim() || isLoading}
-              className="bg-gradient-to-r from-orange-500 to-pink-500 text-white rounded-xl px-4 py-2 hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
-              aria-label="Send message"
-            >
-              <Send className="w-5 h-5" />
-            </button>
-          </form>
-          <p className="text-xs text-gray-500 mt-2 text-center">
-            Powered by AI • We respect your privacy
-          </p>
-        </div>
+  <form onSubmit={handleSubmit} className="flex gap-2">
+    <textarea
+      ref={inputRef}
+      value={input}
+      onChange={(e) => setInput(e.target.value)}
+      onKeyDown={handleKeyDown}
+      placeholder="Type your message..."
+      className="flex-1 resize-none rounded-xl border border-gray-300 px-4 py-2 text-sm text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent max-h-32"
+      rows={1}
+      style={{
+        minHeight: '40px',
+        maxHeight: '128px',
+      }}
+      onInput={(e) => {
+        const target = e.target as HTMLTextAreaElement
+        target.style.height = 'auto'
+        target.style.height = Math.min(target.scrollHeight, 128) + 'px'
+      }}
+    />
+    <button
+      type="submit"
+      disabled={!input.trim() || isLoading}
+      className="bg-gradient-to-r from-orange-500 to-pink-500 text-white rounded-xl px-4 py-2 hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+      aria-label="Send message"
+    >
+      <Send className="w-5 h-5" />
+    </button>
+  </form>
+  <p className="text-xs text-gray-500 mt-2 text-center">
+    Powered by AI • We respect your privacy
+  </p>
+</div>
       </div>
     </>
   )

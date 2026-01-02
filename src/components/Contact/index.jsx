@@ -4,7 +4,6 @@ import Rounded from '../../common/RoundedButton';
 import { useRef } from 'react';
 import { useScroll, motion, useTransform, useSpring } from 'framer-motion';
 import Magnetic from '../../common/Magnetic';
-import { Link } from 'lucide-react';
 
 export default function index() {
     const container = useRef(null);
@@ -15,6 +14,20 @@ export default function index() {
     const x = useTransform(scrollYProgress, [0, 1], [0, 100])
     const y = useTransform(scrollYProgress, [0, 1], [-500, 0])
     const rotate = useTransform(scrollYProgress, [0, 1], [120, 90])
+
+    // Click handlers to force navigation
+    const handleEmailClick = (email) => {
+        window.location.href = `mailto:${email}`;
+    };
+
+    const handlePhoneClick = (phone) => {
+        window.location.href = `tel:${phone}`;
+    };
+
+    const handleSocialClick = (url) => {
+        window.open(url, '_blank', 'noopener,noreferrer');
+    };
+
     return (
         <motion.div style={{y}} ref={container} className={styles.contact}>
             <div className={styles.body}>
@@ -28,14 +41,11 @@ export default function index() {
                             src={`/images/kia_logo.png`}
                             />
                         </div>
-                        <h2>Let’s Make Your Next Journey Memorable .</h2>
-
-                        
+                        <h2>Let's Make Your Next Journey Memorable.</h2>
                     </span>
                     
-                    
                     <motion.div style={{x}} className={styles.buttonContainer}>
-                        <Rounded  backgroundColor={"#334BD3"} className={styles.button}>
+                        <Rounded backgroundColor={"#334BD3"} className={styles.button}>
                             <p>Get in touch</p>
                         </Rounded>
                     </motion.div>
@@ -44,24 +54,23 @@ export default function index() {
                     </motion.svg>
                 </div>
                 <div className={styles.nav}>
-                        <Rounded><Link href='mailto:sales@kiatourism.com' className='block' >
-                            sales@kiatourism.com
-                            </Link>
-                            
-                        </Rounded> 
-
-                        
-                        <Rounded><Link href='mailto:admin@kiatourism.com'>
-                            admin@kiatourism.com
-                            </Link>
-                        </Rounded>
-
-                        
+                    <div onClick={() => handleEmailClick('sales@kiatourism.com')} style={{cursor: 'pointer'}}>
                         <Rounded>
-                            <Link href='tel:+917413030444'>
-                            +917413030444
-                            </Link>
+                            sales@kiatourism.com
                         </Rounded>
+                    </div>
+
+                    <div onClick={() => handleEmailClick('admin@kiatourism.com')} style={{cursor: 'pointer'}}>
+                        <Rounded>
+                            admin@kiatourism.com
+                        </Rounded>
+                    </div>
+
+                    <div onClick={() => handlePhoneClick('+917413030444')} style={{cursor: 'pointer'}}>
+                        <Rounded>
+                            +91 741 303 0444
+                        </Rounded>
+                    </div>
                 </div>
                 <div className={styles.info}>
                     <div>
@@ -71,21 +80,33 @@ export default function index() {
                         </span>
                         <span>
                             <h3>Developed by</h3>
-                            <p><a style={{textDecoration:"none", color:"white"}} href="www.binaryboon.com">binary boon</a></p>
+                            <p>
+                                <a 
+                                    style={{textDecoration:"none", color:"white", cursor: 'pointer'}} 
+                                    href="https://www.binaryboon.com"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    binary boon
+                                </a>
+                            </p>
                         </span>
                     </div>
                     <div>
                         <span>
                             <h3>socials</h3>
-                            
                         </span>
-                        <Magnetic>
-                            <p>Instagram</p>
-                        </Magnetic>
+                        <div onClick={() => handleSocialClick('https://instagram.com/kiatourism')} style={{cursor: 'pointer'}}>
+                            <Magnetic>
+                                <p>Instagram</p>
+                            </Magnetic>
+                        </div>
                         
-                        <Magnetic>
-                            <p>Linkedin</p>
-                        </Magnetic>
+                        <div onClick={() => handleSocialClick('https://linkedin.com/company/kiatourism')} style={{cursor: 'pointer'}}>
+                            <Magnetic>
+                                <p>Linkedin</p>
+                            </Magnetic>
+                        </div>
                     </div>
                 </div>
             </div>
