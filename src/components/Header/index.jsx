@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Button from './Button';
 import styles from './style.module.scss';
 import Nav from './Nav';
+import Link from 'next/link';
 
 export default function Header() {
     const [isActive, setIsActive] = useState(false);
@@ -56,7 +57,7 @@ export default function Header() {
     };
 
     return (<>
-        <div className={styles.logo}><img src="/images/kia_logo.png" alt="kia logo" /></div>
+      <Link href="/" className='block'>  <div  className={styles.logo}><img src="/images/kia_logo.png" alt="kia logo" /></div></Link>
 
         <div className={styles.header}>
             

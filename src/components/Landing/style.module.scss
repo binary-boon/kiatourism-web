@@ -3,7 +3,7 @@
     display: flex;
     height: 100vh;
     overflow: hidden;
-    background: #C7F9CC;
+    background: #f1f1f1;
 
     img{
       object-fit: cover;
@@ -65,7 +65,7 @@
     
     .sliderContainer{
       position: absolute;
-      bottom: 50px;
+      bottom: 20px;
       left: 0;
       width: 100%;
       z-index: 1;
@@ -88,7 +88,7 @@
     .slider p{
       position: relative;
       margin: 0px;
-      color: #38A3A5;
+      color: #000000;
       font-size: 90px;
       font-weight: 500;
       padding-right: 50px;
@@ -113,7 +113,7 @@
     .description{
       position: relative;
       width: 50%;
-      color: #38A3A5;
+      color: #020202;
       font-size: 24px;
       font-weight: 300;
       z-index: 2;
@@ -216,7 +216,7 @@
     .button a {
       text-decoration: none;
       color: white;
-      font-size: 1.8rem;
+      font-size: 1.25rem;
       padding: 10px 20px;
       display: inline-block;
 

@@ -1,4 +1,10 @@
+import { title } from "process"
+
 export const links = [
+    {
+        title: "Home",
+        href: "/"
+    },
     {
         title: "About Us",
         href: "/aboutus"

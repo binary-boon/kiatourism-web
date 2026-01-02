@@ -4,6 +4,7 @@ import Rounded from '../../common/RoundedButton';
 import { useRef } from 'react';
 import { useScroll, motion, useTransform, useSpring } from 'framer-motion';
 import Magnetic from '../../common/Magnetic';
+import { Link } from 'lucide-react';
 
 export default function index() {
     const container = useRef(null);
@@ -43,16 +44,23 @@ export default function index() {
                     </motion.svg>
                 </div>
                 <div className={styles.nav}>
-                        <Rounded>
-                            <p>sales@kiatourism.com</p>
+                        <Rounded><Link href='mailto:sales@kiatourism.com' className='block' >
+                            sales@kiatourism.com
+                            </Link>
                             
                         </Rounded> 
-                        <Rounded>
-                            <p>admin@kiatourism.com</p>
-                            
+
+                        
+                        <Rounded><Link href='mailto:admin@kiatourism.com'>
+                            admin@kiatourism.com
+                            </Link>
                         </Rounded>
+
+                        
                         <Rounded>
-                            <p>+91 741 3030 444</p>
+                            <Link href='tel:+917413030444'>
+                            +917413030444
+                            </Link>
                         </Rounded>
                 </div>
                 <div className={styles.info}>
